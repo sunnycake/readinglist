@@ -6,6 +6,7 @@ import ui
 
 store = BookStore()
 
+
 def main():
 
     menu = create_menu()
@@ -14,7 +15,7 @@ def main():
         choice = ui.display_menu_get_choice(menu)
         action = menu.get_action(choice)
         action()
-        if choice == 'Q':
+        if choice == 'Q' or choice == 'q':
             break
 
 
@@ -34,7 +35,7 @@ def create_menu():
 def add_book():
     new_book = ui.get_book_info()
     new_book.save()
-    
+
 
 def show_read_books():
     read_books = store.get_books_by_read_value(True)
@@ -52,7 +53,8 @@ def show_all_books():
 
 
 def search_book():
-    search_term = ui.ask_question('Enter search term, will match partial authors or titles.')
+    search_term = ui.ask_question(
+        'Enter search term, will match partial authors or titles.')
     matches = store.book_search(search_term)
     ui.show_books(matches)
 
@@ -60,11 +62,11 @@ def search_book():
 def change_read():
 
     book_id = ui.get_book_id()
-    book = store.get_book_by_id(book_id)  
-    new_read = ui.get_read_value()     
-    book.read = new_read 
+    book = store.get_book_by_id(book_id)
+    new_read = ui.get_read_value()
+    book.read = new_read
     book.save()
-    
+
 
 def quit_program():
     ui.message('Thanks and bye!')
