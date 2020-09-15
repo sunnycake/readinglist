@@ -28,9 +28,14 @@ def show_books(books):
 
     if books:
         for book in books:
-            print(book)
+            if book == books[0]:
+                print('\n' + book)
+            elif book == books[(len(books) - 1)]:
+                print(book + '\n')
+            else:
+                print(book)
     else:
-        print('No books to display')
+        print('\nNo books to display\n')
 
 
 def get_book_info():
