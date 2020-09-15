@@ -8,6 +8,7 @@ class Menu:
         self.text_descriptions = {}
         self.functions = {}
 
+
     def add_option(self, key, description, func):
         """ Add or replaces an option to this menu.
         If another option with the same key is already present, it will be overwritten.
@@ -15,17 +16,20 @@ class Menu:
         :param description: a text description of the menu option
         :param func: the function that should be invoked when the user selects this option """
         self.text_descriptions[key] = description
-        self.functions[str(key).upper()] = func
+        self.functions[key] = func
+
 
     def is_valid(self, choice):
         """ Verifies if a choice is one of the menu options
         :param choice: the choice to check
         :returns: True if the choice is a key in the menu options, False otherwise  """
-        return str(choice).upper() in self.text_descriptions
+        return choice in self.text_descriptions
+
 
     def get_action(self, choice):
         """ :returns: the function to invoke for the menu choice, or None if not found """
         return self.functions.get(str(choice).upper())
+
 
     def __str__(self):
         """ :returns: all the menu options and their descriptions, one per line. """
