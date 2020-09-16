@@ -34,10 +34,7 @@ def create_menu():
 
 def add_book():
     new_book = ui.get_book_info()
-    try:
-        new_book.save()
-    except:
-        ui.message('Error - The book you\'re trying to add already exist.')
+    new_book.save()
 
 
 def show_read_books():
