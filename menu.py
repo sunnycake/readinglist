@@ -28,11 +28,11 @@ class Menu:
 
     def get_action(self, choice):
         """ :returns: the function to invoke for the menu choice, or None if not found """
-        return self.functions.get(choice)
+        return self.functions.get(str(choice).upper())
 
 
     def __str__(self):
         """ :returns: all the menu options and their descriptions, one per line. """
-        texts = [f'{key}: {self.text_descriptions[key]}' for key in self.text_descriptions.keys()]
+        texts = [
+            f'{key}: {self.text_descriptions[key]}' for key in self.text_descriptions.keys()]
         return '\n'.join(texts)
-
