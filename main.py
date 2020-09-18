@@ -68,14 +68,17 @@ def change_read():
 
 def delete_book():
 
-    book_id = ui.get_book_id()
-    book = store.get_book_by_id(book_id)
-    answer = ui.ask_question("Type DELETE to confirm you'd like to delete this book: ")
-    if answer == "DELETE":
-        Book.delete(book)
-    else:
-        ui.message("Returning to main menu. Book has not been deleted.")
-        main()
+    try:
+        book_id = ui.get_book_id()
+        book = store.get_book_by_id(book_id)
+        answer = ui.ask_question("Type DELETE to confirm you'd like to delete this book: ")
+        if answer == "DELETE":
+            Book.delete(book)
+        else:
+            ui.message("Returning to main menu. Book has not been deleted.")
+            main()
+    except:
+        ui.message('Error - book not found with that ID')
     
 
 def quit_program():
