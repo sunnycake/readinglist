@@ -6,6 +6,7 @@ import ui
 
 store = BookStore()
 
+
 def main():
 
     menu = create_menu()
@@ -26,6 +27,7 @@ def create_menu():
     menu.add_option('4', 'Show Read Books', show_read_books)
     menu.add_option('5', 'Show All Books', show_all_books)
     menu.add_option('6', 'Change Book Read Status', change_read)
+    menu.add_option('7', 'Delete Book', delete_book)
     menu.add_option('Q', 'Quit', quit_program)
 
     return menu
@@ -34,7 +36,7 @@ def create_menu():
 def add_book():
     new_book = ui.get_book_info()
     new_book.save()
-    
+
 
 def show_read_books():
     read_books = store.get_books_by_read_value(True)
@@ -52,7 +54,8 @@ def show_all_books():
 
 
 def search_book():
-    search_term = ui.ask_question('Enter search term, will match partial authors or titles.')
+    search_term = ui.ask_question(
+        'Enter search term, will match partial authors or titles.')
     matches = store.book_search(search_term)
     ui.show_books(matches)
 
@@ -67,7 +70,7 @@ def change_read():
     else:
         ui.message(f'\nConfirmation: You have not read {book.title} by {book.author}\n')
     book.save()
-    
+
 
 def quit_program():
     ui.message('Thanks and bye!')

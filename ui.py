@@ -8,6 +8,7 @@ def display_menu_get_choice(menu):
     while True:
         print(menu)
         choice = input('Enter choice? ')
+        choice = choice.upper()
         if menu.is_valid(choice):
             return choice
         else:
@@ -28,9 +29,17 @@ def show_books(books):
 
     if books:
         for book in books:
-            print(book)
+            bookString = str(book)
+            if len(books) == 1:
+                print('\n' + bookString + '\n')
+            elif book == books[0]:
+                print('\n' + bookString)
+            elif book == books[(len(books) - 1)]:
+                print(bookString + '\n')
+            else:
+                print(bookString)
     else:
-        print('No books to display')
+        print('\nNo books to display\n')
 
 
 def get_book_info():
