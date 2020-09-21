@@ -72,6 +72,22 @@ def change_read():
     book.save()
 
 
+def delete_book():
+    try:
+        book_id = ui.get_book_id()
+        book = store.get_book_by_id(book_id)
+        answer = ui.ask_question("Type DELETE to confirm you'd like to delete this book: ")
+        if answer == "DELETE":
+            Book.delete(book)
+        else:
+            ui.message("Returning to main menu. Book has not been deleted.")
+    except:
+        ui.message('Error - book not found with that ID')
+
+def quit_program():
+    ui.message('Thanks and bye!')
+
+
 def quit_program():
     ui.message('Thanks and bye!')
 
